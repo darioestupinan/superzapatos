@@ -1,0 +1,37 @@
+﻿<h1>Stores</h1>
+
+<p *ngIf="!stores"><em>Loading...</em></p>
+
+<ul class='select' *ngIf="stores">
+    <li *ngFor="let store of stores" (click)="onSelect(store)">
+        <span>{{store.name}}</span>
+        <span>{{store.description}}</span>        
+    </li>
+</ul>
+
+<!--<select class='select' *ngIf="stores">
+    <option *ngFor="let store of stores" (change)="onSelect(store)" [value]="store">
+        {{store.name}}
+    </option>
+</select>-->
+
+<table class='table' *ngIf="articles">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Total in Shelf</th>
+            <th>Total in Vault</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let article of articles" (click)="onSelect(article)">
+            <td>{{ article.name }}</td>
+            <td>{{ article.description }}</td>
+            <td>{{ article.totalInShelf }}</td>
+            <td>{{ article.totalInVault }}</td>
+            <td>{{ article.price }}</td>
+        </tr>
+    </tbody>
+</table>

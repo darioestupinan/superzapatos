@@ -1,0 +1,26 @@
+﻿<h1>Articles</h1>
+
+<p>All Articles</p>
+
+<p *ngIf="!articles"><em>Loading...</em></p>
+
+<table class='table' *ngIf="articles">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Total in Shelf</th>
+            <th>Total in Vault</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let article of articles" (click)="onSelect(article)">
+            <td>{{ article.name }}</td>
+            <td>{{ article.description }}</td>
+            <td>{{ article.totalInShelf }}</td>
+            <td>{{ article.totalInVault }}</td>
+            <td>{{ article.price }}</td>
+        </tr>
+    </tbody>
+</table>
