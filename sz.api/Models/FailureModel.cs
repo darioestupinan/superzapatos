@@ -10,19 +10,15 @@ namespace sz.api.Models
     [DataContract]
     public abstract class FailureModel 
     {
-        [DataMember]
         [JsonProperty(PropertyName = "success")]
         public bool Success { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "error_code")]
+        [JsonProperty(PropertyName = "error_code", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int ErrorCode { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "error_msg")]
+        [JsonProperty(PropertyName = "error_msg", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string ErrorMessage { get; set; }
-
-
+        
         public FailureModel CreateFailureModel(int code, string response)
         {
             Success = false;

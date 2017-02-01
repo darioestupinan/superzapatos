@@ -22,13 +22,23 @@ namespace sz.api.Models
     public class StoresResponseModel : FailureModel
     {
         [JsonProperty(PropertyName = "stores")]
-        public IEnumerable<Store> Stores { get; private set; }
+        public IEnumerable<Store> Stores { get; set; }
+
+        [JsonProperty(PropertyName = "total_elements", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int TotalElements { get; set; }
 
         public StoresResponseModel CreateOkModel(IEnumerable<Store> stores)
         {
             Success = true;
             Stores = stores;
+            TotalElements = stores.Count();
             return this;
-        }        
+        }
+
+        public bool ShouldSerializeManager()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return (Stores.Count() > 0);
+        }
     }
 }

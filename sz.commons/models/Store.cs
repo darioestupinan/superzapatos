@@ -11,15 +11,15 @@ namespace sz.commons.models
     public class Store
     {
         [DataMember]
-        [JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public long Id { get; set; }
 
         [DataMember]
-        [JsonProperty(PropertyName = "name")]
+        [JsonProperty(PropertyName = "name", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Name { get; set; }
 
         [DataMember]
-        [JsonProperty(PropertyName = "address")]
+        [JsonProperty(PropertyName = "address", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Address { get; set; }
     }
 }

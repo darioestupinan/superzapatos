@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using sz.api.ExceptionHandlers;
 using sz.api.Models;
 using sz.dataprovider.DataModel;
 using sz.dataprovider.Tables;
@@ -48,6 +49,7 @@ namespace sz.api.Providers
                     Id = s.Store.Id
                 },
                 StoreId = s.StoreId,
+                StoreName = s.Store.Name,
                 TotalInShelf = s.TotalInShelf,
                 TotalInVault = s.TotalInVault
             }).ToList();
@@ -57,6 +59,8 @@ namespace sz.api.Providers
         public async Task<IEnumerable<Article>> GetByStoreId(long id)
         {
             var articles = await _articleData.GetByStoreId(id);
+            if (articles.Count() == 0)
+                throw new RecordNotFoundException();
             var result = articles.Select(s => new sz.api.Models.Article
             {
                 Id = s.Id,

@@ -6,40 +6,32 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace sz.commons.models
-{
-    [DataContract]
+{    
     public class Article
     {
-        [DataMember]
-        [JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public long Id { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "name")]
+        [JsonProperty(PropertyName = "name", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Name { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "description")]
+        [JsonProperty(PropertyName = "description", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "price")]
+        [JsonProperty(PropertyName = "price", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public decimal Price { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "totalInShelf")]
+        [JsonProperty(PropertyName = "total_in_shelf", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int TotalInShelf { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "totalInVault")]
+        [JsonProperty(PropertyName = "total_in_vault", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int TotalInVault { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "storeId")]
+        [JsonIgnore]
+        [JsonProperty(PropertyName = "store_id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public long StoreId { get; set; }
 
-        [DataMember]
-        [JsonProperty(PropertyName = "store")]
+        [JsonProperty(PropertyName = "store", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Store Store { get; set; }                
     }
 }

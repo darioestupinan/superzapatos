@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using sz.api.ExceptionHandlers;
 using sz.api.Models;
 using sz.dataprovider.Tables;
 
@@ -45,6 +46,8 @@ namespace sz.api.Providers
         public async Task<Store> GetOne(long id)
         {
             var store = await _storeData.GetOne(id);
+            if (store == null)
+                throw new RecordNotFoundException();
             var result = new sz.api.Models.Store
             {
                 Address = store.Address,

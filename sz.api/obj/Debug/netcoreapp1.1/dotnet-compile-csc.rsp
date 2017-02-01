@@ -194,6 +194,7 @@
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Startup.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Controllers\ArticleController.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Controllers\StoreController.cs"
+"C:\Users\Dario\Source\Repos\superzapatos\sz.api\ExceptionHandlers\RecordNotFoundException.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\AppSettings.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\Article.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\ArticleResponseModel.cs"

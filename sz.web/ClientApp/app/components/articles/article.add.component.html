@@ -1,0 +1,44 @@
+﻿<h1>Article</h1>
+<div [hidden]="submitted">
+    <form class="form-group" (ngSubmit)="onSubmit()" #articleForm="ngForm">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Name</span>
+            <input [(ngModel)]="newArticle.name" name="name" type="text" class="form-control" placeholder="some name" aria-describedby="basic-addon1" required #name="ngModel">
+            <span class="alert alert-danger" [hidden]="name.valid || name.pristine" >Name is required</span>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon2">Description</span>
+            <textarea [(ngModel)]="newArticle.description" name="description" class="form-control" placeholder="some description" aria-describedby="basic-addon2" required #description="ngModel"></textarea>
+            <span class="alert alert-danger" [hidden]="description.valid || description.pristine">Description is required</span>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon3">Price</span>
+            <input [(ngModel)]="newArticle.price" name="price" type="number" min="0" class="form-control" placeholder="the price of the article" aria-describedby="basic-addon3">            
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon4">Total In Shelf</span>
+            <input [(ngModel)]="newArticle.total_in_shelf" name="total_in_shelf" type="number" min="0" class="form-control" placeholder="how many you have in shelf" aria-describedby="basic-addon4">            
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon5">Total In Vault</span>
+            <input [(ngModel)]="newArticle.total_in_vault" name="total_in_vault" type="number" min="0" class="form-control" placeholder="how many you have in storage" aria-describedby="basic-addon5">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon6">Store</span>
+            <select [(ngModel)]="newArticle.store_id" name="store_id" #store="ngModel" class="form-control list-group" aria-describedby="basic-addon6">
+                <option class="list-group-item" *ngFor="let store of stores" [value]="store.id">{{store.name}}</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <button type="submit" class="btn btn-default" [disabled]="!articleForm.form.valid">Submit</button>
+            <button type="button" class="btn btn-default" (click)="newHero(); articleForm.reset()">Clear</button>
+        </div>
+        <br>
+    </form>
+</div>

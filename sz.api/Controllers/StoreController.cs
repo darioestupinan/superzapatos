@@ -31,7 +31,13 @@ namespace sz.api.Controllers
             }
             catch (Exception)
             {
-                var result = new StoresResponseModel().CreateFailureModel((int)HttpStatusCode.BadRequest, Enum.GetName(typeof(HttpStatusCode), HttpStatusCode.BadRequest)) as StoresResponseModel;
+                var result = new StoresResponseModel
+                {
+                    Stores = null,
+                    ErrorCode = (int)HttpStatusCode.BadRequest,
+                    ErrorMessage = "Bad Request",
+                    Success = false
+                };
                 return result;
             }
         }
@@ -48,7 +54,12 @@ namespace sz.api.Controllers
             }
             catch (Exception)
             {
-                var result = new StoreResponseModel().CreateFailureModel((int)HttpStatusCode.BadRequest, Enum.GetName(typeof(HttpStatusCode), HttpStatusCode.BadRequest)) as StoreResponseModel;
+                var result = new StoreResponseModel
+                {
+                    ErrorCode = (int)HttpStatusCode.BadRequest,
+                    ErrorMessage = "Bad Request",
+                    Success = false
+                };
                 return result;
             }
         }
@@ -65,7 +76,12 @@ namespace sz.api.Controllers
             }
             catch (Exception)
             {
-                var result = new StoreResponseModel().CreateFailureModel((int)HttpStatusCode.BadRequest, Enum.GetName(typeof(HttpStatusCode), HttpStatusCode.BadRequest)) as StoreResponseModel;
+                var result = new StoreResponseModel
+                {
+                    ErrorCode = (int)HttpStatusCode.BadRequest,
+                    ErrorMessage = "Bad Request",
+                    Success = false
+                };
                 return result;
             }
         }
@@ -82,7 +98,12 @@ namespace sz.api.Controllers
             }
             catch (Exception)
             {
-                var result = new StoreResponseModel().CreateFailureModel((int)HttpStatusCode.BadRequest, Enum.GetName(typeof(HttpStatusCode), HttpStatusCode.BadRequest)) as StoreResponseModel;
+                var result = new StoreResponseModel
+                {
+                    ErrorCode = (int)HttpStatusCode.BadRequest,
+                    ErrorMessage = "Bad Request",
+                    Success = false
+                };
                 return result;
             }
         }
@@ -100,7 +121,12 @@ namespace sz.api.Controllers
             }
             catch (Exception)
             {
-                var result = new StoreResponseModel().CreateFailureModel((int)HttpStatusCode.BadRequest, Enum.GetName(typeof(HttpStatusCode), HttpStatusCode.BadRequest)) as StoreResponseModel;
+                var result = new StoreResponseModel
+                {
+                    ErrorCode = (int)HttpStatusCode.BadRequest,
+                    ErrorMessage = "Bad Request",
+                    Success = false
+                };
                 return result;
             }
         }
