@@ -48,14 +48,13 @@ namespace webapi
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvcCore().AddJsonFormatters().AddXmlSerializerFormatters().AddXmlDataContractSerializerFormatters();    
             services.AddOptions();
-            services.Configure<AppSettings>(Configuration);
+            
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase());
             services.Configure<MvcOptions>(options =>
             {
                 //mvc options
             });           
-
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+                        
             services.AddTransient<IArticleProvider, ArticleProvider>();
             services.AddTransient<IStoreProvider, StoreProvider>();
             services.AddScoped<IArticleTable, ArticleTable>();
