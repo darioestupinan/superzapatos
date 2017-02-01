@@ -8,7 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { StoresComponent } from './components/stores/stores.component';
 import { ArticleAddComponent } from './components/articles/article.add.component';
-
+import { StoresAddComponent } from './components/stores/stores.add.component';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -18,17 +19,20 @@ import { ArticleAddComponent } from './components/articles/article.add.component
         HomeComponent,
         ArticlesComponent,
         StoresComponent,
-        ArticleAddComponent
+        ArticleAddComponent,
+        StoresAddComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.        
         FormsModule,
+        Ng2PaginationModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },            
             { path: 'articles', component: ArticlesComponent },
-            { path: 'articles.add', component: ArticleAddComponent },
+            { path: 'articles.add', component: ArticleAddComponent },            
             { path: 'stores', component: StoresComponent },
+            { path: 'stores.add', component: StoresAddComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

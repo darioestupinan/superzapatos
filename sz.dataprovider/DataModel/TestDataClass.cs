@@ -11,14 +11,14 @@ namespace sz.dataprovider.DataModel
         {
             var testStore = new sz.commons.models.Store
             {
-                Id = 1,
+                Id = 1000001,
                 Address = "5th Avenue, New York",
                 Name = "Christies"
             };
 
             var testStore1 = new sz.commons.models.Store
             {
-                Id = 2,
+                Id = 1000002,
                 Address = "5th Avenue, New York",
                 Name = "Apple Store"
             };
@@ -28,33 +28,33 @@ namespace sz.dataprovider.DataModel
 
             var testArticle = new sz.commons.models.Article
             {
-                Id = 1,
+                Id = 1000002,
                 Name = "Box",
                 Description = "Schrodinger Box",
                 Price = 150.15M,
-                StoreId = 1,
+                StoreId = 1000001,
                 TotalInShelf = 100,
                 TotalInVault = 500
             };
 
             var testArticle2 = new sz.commons.models.Article
             {
-                Id = 2,
+                Id = 1000003,
                 Name = "Toy",
                 Description = "Cat",
                 Price = 40.15M,
-                StoreId = 1,
+                StoreId = 1000001,
                 TotalInShelf = 100,
                 TotalInVault = 500
             };
 
             var testArticle3 = new sz.commons.models.Article
             {
-                Id = 3,
+                Id = 1000004,
                 Name = "Dog",
                 Description = "Dog Puff",
                 Price = 140.15M,
-                StoreId = 2,
+                StoreId = 1000002,
                 TotalInShelf = 100,
                 TotalInVault = 500
             };

@@ -33,7 +33,7 @@ export class ArticleAddComponent{
         console.log(this.newArticle);
     }
 
-    newHero() {
+    createNewArticle() {
         this.newArticle = new Article();
     }   
 }

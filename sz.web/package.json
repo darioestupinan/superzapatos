@@ -42,7 +42,8 @@
     "webpack": "^1.13.2",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-merge": "^0.14.1",
-    "zone.js": "^0.6.25"
+    "zone.js": "^0.6.25",
+    "ng2-pagination": "^1.0.1"
   },
   "devDependencies": {
     "@types/core-js": "^0.9.35"

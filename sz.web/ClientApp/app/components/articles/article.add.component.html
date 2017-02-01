@@ -1,10 +1,12 @@
-﻿<h1>Article</h1>
-<div [hidden]="submitted">
+﻿<div class="page-header">
+    <h1>Article</h1>
+</div>
+<div>
     <form class="form-group" (ngSubmit)="onSubmit()" #articleForm="ngForm">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Name</span>
             <input [(ngModel)]="newArticle.name" name="name" type="text" class="form-control" placeholder="some name" aria-describedby="basic-addon1" required #name="ngModel">
-            <span class="alert alert-danger" [hidden]="name.valid || name.pristine" >Name is required</span>
+            <span class="alert alert-danger" [hidden]="name.valid || name.pristine">Name is required</span>
         </div>
         <br>
         <div class="input-group">
@@ -15,12 +17,12 @@
         <br>
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon3">Price</span>
-            <input [(ngModel)]="newArticle.price" name="price" type="number" min="0" class="form-control" placeholder="the price of the article" aria-describedby="basic-addon3">            
+            <input [(ngModel)]="newArticle.price" name="price" type="number" min="0" class="form-control" placeholder="the price of the article" aria-describedby="basic-addon3">
         </div>
         <br>
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon4">Total In Shelf</span>
-            <input [(ngModel)]="newArticle.total_in_shelf" name="total_in_shelf" type="number" min="0" class="form-control" placeholder="how many you have in shelf" aria-describedby="basic-addon4">            
+            <input [(ngModel)]="newArticle.total_in_shelf" name="total_in_shelf" type="number" min="0" class="form-control" placeholder="how many you have in shelf" aria-describedby="basic-addon4">
         </div>
         <br>
         <div class="input-group">
@@ -37,8 +39,11 @@
         <br>
         <div>
             <button type="submit" class="btn btn-default" [disabled]="!articleForm.form.valid">Submit</button>
-            <button type="button" class="btn btn-default" (click)="newHero(); articleForm.reset()">Clear</button>
+            <button type="button" class="btn btn-default" (click)="createNewArticle(); articleForm.reset()">Clear</button>
+            <a class="btn btn-default" [routerLink]="['/articles']">See Articles</a>
         </div>
+        <br />
+        <div [hidden]="!submitted" class="alert alert-success">Article Added</div>
         <br>
     </form>
 </div>

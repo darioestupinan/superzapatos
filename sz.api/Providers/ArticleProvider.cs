@@ -14,7 +14,7 @@ namespace sz.api.Providers
         Task<IEnumerable<Article>> GetAllAsync();
         Task<Article> GetOne(long id);
         Task<IEnumerable<Article>> GetByStoreId(long id);
-        Task<Article> Insert(Article value);
+        Task<Article> Insert(ArticleEntry value);
         Task<Article> Update(long id, Article value);
         Task Delete(long id);
     }
@@ -22,10 +22,12 @@ namespace sz.api.Providers
     public class ArticleProvider : IArticleProvider
     {
         private IArticleTable _articleData;
+        private IStoreTable _storeData;
 
-        public ArticleProvider (IArticleTable articleData)
+        public ArticleProvider (IArticleTable articleData, IStoreTable storeData)
         {
             _articleData = articleData;
+            _storeData = storeData;
         }
 
         public async Task Delete(long id)
@@ -77,6 +79,7 @@ namespace sz.api.Providers
         public async Task<Article> GetOne(long id)
         {
             var article = await _articleData.GetOne(id);
+            var store = await _storeData.GetOne(article.StoreId);
             var result = new sz.api.Models.Article
             {
                 Id = article.Id,
@@ -85,12 +88,13 @@ namespace sz.api.Providers
                 Price = article.Price,
                 StoreId = article.StoreId,
                 TotalInShelf = article.TotalInShelf,
-                TotalInVault = article.TotalInVault
+                TotalInVault = article.TotalInVault,
+                StoreName = store?.Name                
             };
             return result;
         }
 
-        public async Task<Article> Insert(Article value)
+        public async Task<Article> Insert(ArticleEntry value)
         {
             var result = await _articleData.Insert(new commons.models.Article
             {
@@ -102,8 +106,18 @@ namespace sz.api.Providers
                 TotalInShelf = value.TotalInShelf,
                 TotalInVault = value.TotalInVault
             });
-            value.Id = result.Id;
-            return value;
+            var response = new sz.api.Models.Article
+            {
+                Id = result.Id,
+                Description = result.Description,
+                Name = result.Name,
+                Price = result.Price,
+                StoreId = result.StoreId,
+                StoreName = result.Store?.Name,
+                TotalInShelf = result.TotalInShelf,
+                TotalInVault = result.TotalInVault
+            };
+            return response;
         }
 
         public async Task<Article> Update(long id, Article value)

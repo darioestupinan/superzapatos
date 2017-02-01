@@ -1,7 +1,6 @@
-﻿<h1>Stores</h1>
-
-<p *ngIf="!stores" class="glyphicon glyphicon-refresh spinning"><em>Loading...</em></p>
-
+﻿<div class="page-header">
+    <h1>Stores</h1>
+</div>
 <ul class='list-group' *ngIf="stores">
 
     <li *ngFor="let store of stores" (click)="onSelect(store)" class="list-group-item" [ngClass]="{active: store === selectedStore}">
@@ -10,7 +9,8 @@
     </li>
 </ul>
 <br/>
-
+<a class="btn btn-primary" [routerLink]="['/stores.add']">Add new store</a>
+<br />
 <div *ngIf="selectedStore" class="">
     <h3 >Articles of {{selectedStore.name}}</h3>
     <table class='table' *ngIf="articles">

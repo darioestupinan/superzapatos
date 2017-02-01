@@ -21,13 +21,13 @@ namespace sz.api.Controllers
 
         // GET: api/values
         [HttpGet]
-        public async Task<StoresResponseModel> Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
                 var result = await _storeProvider.GetAll();
                 var response = new StoresResponseModel().CreateOkModel(result);
-                return response;
+                return Ok(response);
             }
             catch (Exception)
             {
@@ -38,19 +38,19 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<StoreResponseModel> Get(long id)
+        public async Task<IActionResult> Get(long id)
         {
             try
             {
                 var result = await _storeProvider.GetOne(id);
                 var response = new StoreResponseModel().CreateOkModel(result);
-                return response;
+                return Ok(response);
             }
             catch (Exception)
             {
@@ -60,19 +60,19 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
         }
 
         // POST api/values
         [HttpPost]
-        public async Task<StoreResponseModel> Post([FromBody]Store value)
+        public async Task<IActionResult> Post([FromBody]Store value)
         {
             try
             {
                 var result = await _storeProvider.Insert(value);
                 var response = new StoreResponseModel().CreateOkModel(result);
-                return response;
+                return Ok(response);
             }
             catch (Exception)
             {
@@ -82,19 +82,19 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task<StoreResponseModel> Put(long id, [FromBody]Store value)
+        public async Task<IActionResult> Put(long id, [FromBody]Store value)
         {
             try
             {
                 var result = await _storeProvider.Update(id, value);
                 var response = new StoreResponseModel().CreateOkModel(result);
-                return response;
+                return Ok(response);
             }
             catch (Exception)
             {
@@ -104,20 +104,20 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task<StoreResponseModel> Delete(long id)
+        public async Task<IActionResult> Delete(long id)
         {
             try
             {
                 await _storeProvider.Delete(id);
                 var emptyModel = new Store();
                 var response = new StoreResponseModel().CreateOkModel(emptyModel);
-                return response;
+                return Ok(response);
             }
             catch (Exception)
             {
@@ -127,7 +127,7 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
         }
     }

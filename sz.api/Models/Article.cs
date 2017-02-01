@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sz.api.Models
 {
-    public class Article: sz.commons.models.Article
+    public class Article : sz.commons.models.Article
     {
         [JsonIgnore]
         [JsonProperty(PropertyName = "store", DefaultValueHandling = DefaultValueHandling.Ignore)]
@@ -14,8 +14,14 @@ namespace sz.api.Models
 
         [JsonProperty(PropertyName = "store_name", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string StoreName { get; set; }
+    }
 
-        
+    public class ArticleEntry : sz.commons.models.Article
+    {
+        [JsonIgnore]
+        [JsonProperty(PropertyName = "store", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Store Store { get; set; }        
+
         [JsonProperty(PropertyName = "store_id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public long StoreId { get; set; }
     }

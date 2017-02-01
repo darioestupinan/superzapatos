@@ -27,7 +27,6 @@ namespace sz.api.Controllers
 
         // GET api/article
         [HttpGet]
-        //[Produces("application/json", "application/xml")]
         public async Task<IActionResult> Get()
         {
             try
@@ -51,13 +50,13 @@ namespace sz.api.Controllers
 
         // GET api/article/5
         [HttpGet("{id}")]
-        public async Task<ArticleResponseModel> Get(long id)
+        public async Task<IActionResult> Get(long id)
         {
             try
             {
                 var article = await _articleProvider.GetOne(id);
                 var result = new ArticleResponseModel().CreateOkModel(article);
-                return result;
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -67,21 +66,21 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
 
         }
 
         // GET api/article/store/5
         [HttpGet("stores/{id}")]        
-        public async Task<ArticlesResponseModel> GetByStore(long id)
+        public async Task<IActionResult> GetByStore(long id)
         {
             try
             {
                 if (id == 0) throw new Exception();
                 var article = await _articleProvider.GetByStoreId(id);
                 var result = new ArticlesResponseModel().CreateOkModel(article);
-                return result;
+                return Ok(result);
             }
             catch (RecordNotFoundException)
             {
@@ -92,7 +91,7 @@ namespace sz.api.Controllers
                     ErrorMessage = "Record Not Found",
                     Success = false
                 };
-                return result;
+                return NotFound(result);
             }
             catch (Exception ex)
             {
@@ -103,20 +102,20 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
 
         }
 
         // POST api/values
         [HttpPost]
-        public async Task<ArticleResponseModel> Post([FromBody]Article value)
+        public async Task<IActionResult> Post([FromBody]ArticleEntry value)
         {
             try
             {
                 var result = await _articleProvider.Insert(value);
                 var response = new ArticleResponseModel().CreateOkModel(result);
-                return response;
+                return Ok(response);
             }
             catch (Exception)
             {
@@ -126,19 +125,19 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task<ArticleResponseModel> Put(long id, [FromBody]Article value)
+        public async Task<IActionResult> Put(long id, [FromBody]Article value)
         {
             try
             {
                 var result = await _articleProvider.Update(id, value);
                 var response = new ArticleResponseModel().CreateOkModel(result);
-                return response;
+                return Ok(response);
             }
             catch (Exception)
             {
@@ -148,20 +147,20 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task<ArticleResponseModel> Delete(long id)
+        public async Task<IActionResult> Delete(long id)
         {
             try
             {
                 await _articleProvider.Delete(id);
                 var emptyModel = new Article();
                 var response = new ArticleResponseModel().CreateOkModel(emptyModel);
-                return response;
+                return Ok(response);
             }
             catch (Exception)
             {
@@ -171,7 +170,7 @@ namespace sz.api.Controllers
                     ErrorMessage = "Bad Request",
                     Success = false
                 };
-                return result;
+                return BadRequest(result);
             }
         }
     }
