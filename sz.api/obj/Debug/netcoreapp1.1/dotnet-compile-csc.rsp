@@ -192,10 +192,10 @@
 -resource:"C:\Users\Dario\Source\Repos\superzapatos\sz.api\obj\Debug\netcoreapp1.1\sz.apidotnet-compile.deps.json",sz.api.deps.json
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Program.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Startup.cs"
-"C:\Users\Dario\Source\Repos\superzapatos\sz.api\Auth\AlwaysFailRequirement.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Controllers\ArticleController.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Controllers\StoreController.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\ExceptionHandlers\RecordNotFoundException.cs"
+"C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\AppSettings.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\Article.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\ArticleResponseModel.cs"
 "C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\FailureModel.cs"
