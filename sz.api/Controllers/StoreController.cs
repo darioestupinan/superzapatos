@@ -26,18 +26,12 @@ namespace sz.api.Controllers
             try
             {
                 var result = await _storeProvider.GetAll();
-                var response = new StoresResponseModel().CreateOkModel(result);
+                var response = new StoresResponseModel(result);
                 return Ok(response);
             }
             catch (Exception)
             {
-                var result = new StoresResponseModel
-                {
-                    Stores = null,
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(false, (int)HttpStatusCode.BadRequest, "Bad Request");
                 return BadRequest(result);
             }
         }
@@ -49,17 +43,12 @@ namespace sz.api.Controllers
             try
             {
                 var result = await _storeProvider.GetOne(id);
-                var response = new StoreResponseModel().CreateOkModel(result);
+                var response = new StoreResponseModel(result);
                 return Ok(response);
             }
             catch (Exception)
             {
-                var result = new StoreResponseModel
-                {
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(false, (int)HttpStatusCode.BadRequest, "Bad Request");
                 return BadRequest(result);
             }
         }
@@ -71,17 +60,12 @@ namespace sz.api.Controllers
             try
             {
                 var result = await _storeProvider.Insert(value);
-                var response = new StoreResponseModel().CreateOkModel(result);
+                var response = new StoreResponseModel(result);
                 return Ok(response);
             }
             catch (Exception)
             {
-                var result = new StoreResponseModel
-                {
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(false, (int)HttpStatusCode.BadRequest, "Bad Request");
                 return BadRequest(result);
             }
         }
@@ -93,17 +77,12 @@ namespace sz.api.Controllers
             try
             {
                 var result = await _storeProvider.Update(id, value);
-                var response = new StoreResponseModel().CreateOkModel(result);
+                var response = new StoreResponseModel(result);
                 return Ok(response);
             }
             catch (Exception)
             {
-                var result = new StoreResponseModel
-                {
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(false, (int)HttpStatusCode.BadRequest, "Bad Request");
                 return BadRequest(result);
             }
         }
@@ -116,17 +95,12 @@ namespace sz.api.Controllers
             {
                 await _storeProvider.Delete(id);
                 var emptyModel = new Store();
-                var response = new StoreResponseModel().CreateOkModel(emptyModel);
+                var response = new StoreResponseModel(emptyModel);
                 return Ok(response);
             }
             catch (Exception)
             {
-                var result = new StoreResponseModel
-                {
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(false, (int)HttpStatusCode.BadRequest, "Bad Request");
                 return BadRequest(result);
             }
         }

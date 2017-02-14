@@ -204,6 +204,7 @@ C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\Article.cs
 C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\ArticleResponseModel.cs
 C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\FailureModel.cs
 C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\Store.cs
+C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\StoreModelBase.cs
 C:\Users\Dario\Source\Repos\superzapatos\sz.api\Models\StoreResponseModel.cs
 C:\Users\Dario\Source\Repos\superzapatos\sz.api\Providers\ArticleProvider.cs
 C:\Users\Dario\Source\Repos\superzapatos\sz.api\Providers\StoreProvider.cs

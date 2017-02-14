@@ -9,22 +9,20 @@ using sz.commons.models;
 namespace sz.api.Models
 {
     [DataContract]
-    public class ArticleResponseModel : FailureModel
+    public class ArticleResponseModel : StoreModelBase
     {
         [DataMember]
         [JsonProperty(PropertyName = "article")]
         public Article Article { get; private set; }
 
-        public ArticleResponseModel CreateOkModel(Article article)
+        public ArticleResponseModel (Article article) : base (true)
         {
-            Success = true;
-            Article = article;
-            return this;
+            Article = article;         
         }
     }
 
 
-    public class ArticlesResponseModel : FailureModel
+    public class ArticlesResponseModel : StoreModelBase
     {
         [JsonProperty(PropertyName = "articles", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public IEnumerable<Article> Articles { get; set; }
@@ -32,19 +30,10 @@ namespace sz.api.Models
         [JsonProperty(PropertyName = "total_elements", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int TotalElements { get; set; }
 
-        public ArticlesResponseModel CreateOkModel(IEnumerable<Article> articles)
+        public ArticlesResponseModel (IEnumerable<Article> articles) : base (true)
         {
-            Success = true;
             Articles = articles;
             TotalElements = articles.Count();
-            return this;
         }
-
-        public bool ShouldSerializeManager()
-        {
-            // don't serialize the Manager property if an employee is their own manager
-            return (Articles.Count() > 0);
-        }
-
     }
 }

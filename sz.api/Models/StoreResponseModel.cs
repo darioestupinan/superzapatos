@@ -6,20 +6,18 @@ using System.Threading.Tasks;
 
 namespace sz.api.Models
 {
-    public class StoreResponseModel : FailureModel
+    public class StoreResponseModel : StoreModelBase
     {
         [JsonProperty(PropertyName = "store")]
         public Store Store { get; private set; }
 
-        public StoreResponseModel CreateOkModel(Store store)
+        public StoreResponseModel(Store store) : base(true)
         {
-            Success = true;
             Store = store;
-            return this;
         }
     }
 
-    public class StoresResponseModel : FailureModel
+    public class StoresResponseModel : StoreModelBase
     {
         [JsonProperty(PropertyName = "stores")]
         public IEnumerable<Store> Stores { get; set; }
@@ -27,18 +25,10 @@ namespace sz.api.Models
         [JsonProperty(PropertyName = "total_elements", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int TotalElements { get; set; }
 
-        public StoresResponseModel CreateOkModel(IEnumerable<Store> stores)
+        public StoresResponseModel(IEnumerable<Store> stores) : base(true)
         {
-            Success = true;
             Stores = stores;
             TotalElements = stores.Count();
-            return this;
-        }
-
-        public bool ShouldSerializeManager()
-        {
-            // don't serialize the Manager property if an employee is their own manager
-            return (Stores.Count() > 0);
         }
     }
 }

@@ -32,18 +32,12 @@ namespace sz.api.Controllers
             try
             {
                 var articles = await _articleProvider.GetAllAsync();
-                var result = new ArticlesResponseModel().CreateOkModel(articles);
+                var result = new ArticlesResponseModel(articles);
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                var result = new ArticlesResponseModel
-                {
-                    Articles = null,
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(success: true, code: (int)HttpStatusCode.BadRequest, response: "Bad Request");
                 return BadRequest(result);
             }
         }
@@ -55,17 +49,12 @@ namespace sz.api.Controllers
             try
             {
                 var article = await _articleProvider.GetOne(id);
-                var result = new ArticleResponseModel().CreateOkModel(article);
+                var result = new ArticleResponseModel(article);
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                var result = new ArticleResponseModel
-                {
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(success: false, code: (int)HttpStatusCode.BadRequest, response: "Bad Request");
                 return BadRequest(result);
             }
 
@@ -79,29 +68,17 @@ namespace sz.api.Controllers
             {
                 if (id == 0) throw new Exception();
                 var article = await _articleProvider.GetByStoreId(id);
-                var result = new ArticlesResponseModel().CreateOkModel(article);
+                var result = new ArticlesResponseModel(article);
                 return Ok(result);
             }
             catch (RecordNotFoundException)
             {
-                var result = new ArticlesResponseModel
-                {
-                    Articles = null,
-                    ErrorCode = (int)HttpStatusCode.NotFound,
-                    ErrorMessage = "Record Not Found",
-                    Success = false
-                };
+                var result = new FailureModel(success: false, code: (int)HttpStatusCode.NotFound, response: "Record Not Found");
                 return NotFound(result);
             }
             catch (Exception ex)
             {
-                var result = new ArticlesResponseModel
-                {
-                    Articles = null,
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(success: false, code: (int)HttpStatusCode.BadRequest, response: "Bad Request");
                 return BadRequest(result);
             }
 
@@ -114,17 +91,12 @@ namespace sz.api.Controllers
             try
             {
                 var result = await _articleProvider.Insert(value);
-                var response = new ArticleResponseModel().CreateOkModel(result);
+                var response = new ArticleResponseModel(result);
                 return Ok(response);
             }
             catch (Exception)
             {
-                var result = new ArticleResponseModel
-                {
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(success: false, code: (int)HttpStatusCode.BadRequest, response: "Bad Request");
                 return BadRequest(result);
             }
         }
@@ -136,17 +108,12 @@ namespace sz.api.Controllers
             try
             {
                 var result = await _articleProvider.Update(id, value);
-                var response = new ArticleResponseModel().CreateOkModel(result);
+                var response = new ArticleResponseModel(result);
                 return Ok(response);
             }
             catch (Exception)
             {
-                var result = new ArticleResponseModel
-                {
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(success: false, code: (int)HttpStatusCode.BadRequest, response: "Bad Request");                    
                 return BadRequest(result);
             }
         }
@@ -159,17 +126,12 @@ namespace sz.api.Controllers
             {
                 await _articleProvider.Delete(id);
                 var emptyModel = new Article();
-                var response = new ArticleResponseModel().CreateOkModel(emptyModel);
+                var response = new ArticleResponseModel(emptyModel);
                 return Ok(response);
             }
             catch (Exception)
             {
-                var result = new ArticleResponseModel
-                {
-                    ErrorCode = (int)HttpStatusCode.BadRequest,
-                    ErrorMessage = "Bad Request",
-                    Success = false
-                };
+                var result = new FailureModel(success: false, code: (int)HttpStatusCode.BadRequest, response: "Bad Request");
                 return BadRequest(result);
             }
         }
